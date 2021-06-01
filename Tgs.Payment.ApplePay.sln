@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplePay.Core", "ApplePay.Core\ApplePay.Core.csproj", "{EA3F6F2D-566B-4E62-952E-AA5AF25D7601}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.Payment.ApplePay", "Tgs.Payment.ApplePay\Tgs.Payment.ApplePay.csproj", "{307B75EB-BBA0-4233-A4FF-E0EF06782737}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.Payment.ApplePay.Client", "Tgs.Payment.ApplePay.Client\Tgs.Payment.ApplePay.Client.csproj", "{9432009C-5FE6-48D5-A2B5-78B0101D5FEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.Payment.ApplePay.Tests", "Tgs.Payment.ApplePay.Tests\Tgs.Payment.ApplePay.Tests.csproj", "{1C4133D4-6EA1-4D2C-8DBC-5CF840969BB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplePayTest", "ApplePayTest\ApplePayTest.csproj", "{BE6AC794-56AB-4AE3-BDA5-80E18225655C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplePay.Repositories", "ApplePay.Repositories\ApplePay.Repositories.csproj", "{1F231DCD-8330-478E-B614-2F4EF03AA76E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E7A3F47-DD23-4995-9357-12E27DF7CFE3}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA3F6F2D-566B-4E62-952E-AA5AF25D7601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA3F6F2D-566B-4E62-952E-AA5AF25D7601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA3F6F2D-566B-4E62-952E-AA5AF25D7601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA3F6F2D-566B-4E62-952E-AA5AF25D7601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307B75EB-BBA0-4233-A4FF-E0EF06782737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307B75EB-BBA0-4233-A4FF-E0EF06782737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307B75EB-BBA0-4233-A4FF-E0EF06782737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307B75EB-BBA0-4233-A4FF-E0EF06782737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9432009C-5FE6-48D5-A2B5-78B0101D5FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9432009C-5FE6-48D5-A2B5-78B0101D5FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9432009C-5FE6-48D5-A2B5-78B0101D5FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9432009C-5FE6-48D5-A2B5-78B0101D5FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4133D4-6EA1-4D2C-8DBC-5CF840969BB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4133D4-6EA1-4D2C-8DBC-5CF840969BB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4133D4-6EA1-4D2C-8DBC-5CF840969BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4133D4-6EA1-4D2C-8DBC-5CF840969BB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6AC794-56AB-4AE3-BDA5-80E18225655C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6AC794-56AB-4AE3-BDA5-80E18225655C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6AC794-56AB-4AE3-BDA5-80E18225655C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6AC794-56AB-4AE3-BDA5-80E18225655C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F231DCD-8330-478E-B614-2F4EF03AA76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F231DCD-8330-478E-B614-2F4EF03AA76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F231DCD-8330-478E-B614-2F4EF03AA76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F231DCD-8330-478E-B614-2F4EF03AA76E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C381D3F-AEA6-421F-93E1-7058699DF83A}
+	EndGlobalSection
+EndGlobal
