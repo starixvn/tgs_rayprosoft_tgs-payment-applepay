@@ -71,6 +71,27 @@ namespace Tgs.Payment.ApplePay.MessageQueue
             }
         }
 
-        public ValueTask<byte[]> HandleExceptionAsync(byte[] data, Exception exception, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+        public ValueTask<byte[]> HandleExceptionAsync(byte[] data, Exception exception, CancellationToken cancellationToken = default)
+        {
+            var request = DepositRequest.Parser.ParseFrom(data);
+            var settings = _applePaySerializer.Deserialize<ApplePayDepositSettings>(request.ApplyInfo)!;
+            var resp = _applePaySerializer.Deserialize<ApplePayDepositResponse>(request.ApplyInfo)!;
+
+            var response = new ApplePayDepositResponse
+            {
+                Result = resp.Result,
+                Msg = exception.ToString()
+            };
+
+            var applyInfo = new ApplePayDepositApplyInfo(settings, response);
+
+            var msg = new DepositResponse
+            {
+                Result = _applePaySerializer.Serialize(applyInfo)
+            };
+
+            return ValueTask.FromResult(msg.ToByteArray());
+            throw new NotImplementedException();
+        }
     }
 }
