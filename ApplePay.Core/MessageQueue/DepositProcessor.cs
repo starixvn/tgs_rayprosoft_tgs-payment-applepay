@@ -54,10 +54,19 @@ namespace Tgs.Payment.ApplePay.MessageQueue
             }
             else
             {
-                var response = new ApplePayDepositResponse
+                var msg = string.Empty;
+                if (depositResponse != null)
+                {
+                    if (depositResponse.Msg != null)
+                        msg = depositResponse.Msg;
+                    else
+                        msg = "Request Fail";
+                }
+
+                var response = new ApplePayDepositFailResponse
                 {
                     Result = depositResponse!.Result,
-                    Msg = depositResponse!.Msg
+                    Msg = msg
                 };
 
                 var applyInfo = new ApplePayDepositApplyInfo(settings, response);
