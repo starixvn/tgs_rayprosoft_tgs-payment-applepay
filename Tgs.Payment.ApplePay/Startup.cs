@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using JoyMoe.Common.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,11 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Tgs.Payment.ApplePay
 {
@@ -52,7 +48,7 @@ namespace Tgs.Payment.ApplePay
                     var jsonOptions = sp.GetRequiredService<IOptions<JsonOptions>>().Value;
 
                     options.SystemSerializerOptions = jsonOptions.JsonSerializerOptions;
-                })                
+                })
                 .AddApplePayRepositories((sp, builder) =>
                 {
                     var config = sp.GetRequiredService<IConfiguration>();
@@ -69,9 +65,6 @@ namespace Tgs.Payment.ApplePay
                     options.JsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance; //JsonNamingPolicy.CamelCase;
                     //options.JsonSerializerOptions.Converters.Add(new LeePayDateTimeOffsetConverter());
                 });
-            
         }
-
-        
     }
 }

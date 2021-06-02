@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Tgs.Payment.ApplePay
 {
@@ -11,27 +7,28 @@ namespace Tgs.Payment.ApplePay
     {
         /// <summary>
         /// 商戶guid
-        /// </summary>        
+        /// </summary>
         public string StoreGuid { get; set; } = default!;
 
         /// <summary>
         /// 商戶訂單號
-        /// </summary>    
+        /// </summary>
         [JsonPropertyName("tradeno")]
         public Guid TradeNo { get; set; } = default!;
+
         /// <summary>
         /// 付款方式 1: 支付寶, 2: 微信, 3: 銀行卡
-        /// </summary>        
+        /// </summary>
         public string Type { get; set; } = default!;
 
         /// <summary>
         /// 付款金額 (小數點第二位)
-        /// </summary>        
+        /// </summary>
         public decimal Money { get; set; }
 
         /// <summary>
         /// 收款人
-        /// </summary>        
+        /// </summary>
         public string Inname { get; set; } = default!;
 
         /// <summary>
@@ -43,14 +40,13 @@ namespace Tgs.Payment.ApplePay
         /// <summary>
         /// 收款帳號
         /// </summary>
-        
+
         public string Inbanknum { get; set; } = default!;
 
         /// <summary>
         /// 開戶地
         /// </summary>
         public string? Location { get; set; }
-
 
         /// <summary>
         /// 開戶網點
@@ -83,8 +79,7 @@ namespace Tgs.Payment.ApplePay
         /// example : md5(aaaaabbbbbccccc)
         /// 2. 20200817後註冊商戶 md5(store_guid + _ + tradeno + _ + api_key + _ + money)
         /// example : md5(aaaaa_bbbbb_ccccc_12345)
-        /// </summary>        
+        /// </summary>
         public string? Check { get; set; }
-
     }
 }

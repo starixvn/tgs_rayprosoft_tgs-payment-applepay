@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tgs.Payment.ApplePay
+﻿namespace Tgs.Payment.ApplePay
 {
     public class ApplePayReturn
-    {        
-        public string ReceiveId { get; init; } = default!;        
+    {
+        public string ReceiveId { get; init; } = default!;
         public string ReceiveState { get; init; } = default!;
         public string ReceiveType { get; init; } = default!;
         public string ReceiveTradeNo { get; init; } = default!;
@@ -29,6 +23,5 @@ namespace Tgs.Payment.ApplePay
         public string Check { get; init; } = default!;
         public string Result { get; init; } = default!;
         public string Check2 { get; init; } = default!;
-
     }
 }

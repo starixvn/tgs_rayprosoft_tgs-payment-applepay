@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TGS.ServiceUtility;
 
 namespace Tgs.Payment.ApplePay.Services
 {
-    class SaveDepositReturnCommandService : ICommandService<SaveDepositReturnCommand>
+    internal class SaveDepositReturnCommandService : ICommandService<SaveDepositReturnCommand>
     {
         private readonly ITgsRepository _tgsRepository;
 
@@ -16,6 +13,7 @@ namespace Tgs.Payment.ApplePay.Services
         {
             _tgsRepository = tgsRepository ?? throw new ArgumentNullException(nameof(tgsRepository));
         }
+
         public ValueTask ExecuteAsync(
             SaveDepositReturnCommand command,
             CancellationToken cancellationToken = default)

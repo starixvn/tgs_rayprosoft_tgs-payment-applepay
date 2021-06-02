@@ -33,7 +33,7 @@ namespace ApplePayTest
                 storeGuid,
                 tradeNo,
                 "3",
-                transName                
+                transName
                 );
 
             var depositReturn = await _paymentClient.DepositAsync("tgs.payment.applepay.deposit", 100M, _applePaySerializer.Serialize(depositSettings));

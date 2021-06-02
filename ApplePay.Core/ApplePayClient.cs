@@ -34,7 +34,6 @@ namespace Tgs.Payment.ApplePay
             var hashCode = _applePayHasher.ComputeHash(hashData);
 
             order.Check = hashCode;
-            
 
             var orderJson = JsonSerializer.Serialize(order, _jsonSerializerOptions);
             var orderDict = JsonSerializer

@@ -9,8 +9,8 @@ namespace Tgs.Payment.ApplePay.MessageQueue
     {
         public WithdrawProcessor()
         {
-
         }
+
         public ValueTask<byte[]> HandleAsync(byte[] data, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

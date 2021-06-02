@@ -9,7 +9,7 @@ using Tgs.Payment.Protos;
 
 namespace Tgs.Payment.ApplePay.MessageQueue
 {
-    internal class DepositProcessor : IMessageProcessor
+    internal class DepositProcessor : IMessageProcessor, IMessageExceptionProcessor
     {
         private readonly ApplePaySerializer _applePaySerializer;
         private readonly ApplePayClient _applePayClient;
@@ -22,17 +22,17 @@ namespace Tgs.Payment.ApplePay.MessageQueue
             _options = optionsAccessor.Value;
         }
 
-        async ValueTask<byte[]> IMessageProcessor.HandleAsync(byte[] data, CancellationToken cancellationToken)
+        public async ValueTask<byte[]> HandleAsync(byte[] data, CancellationToken cancellationToken)
         {
             var request = DepositRequest.Parser.ParseFrom(data);
-            var settings = _applePaySerializer.Deserialize<ApplePayDepositSettings>(request.ApplyInfo);
+            var settings = _applePaySerializer.Deserialize<ApplePayDepositSettings>(request.ApplyInfo)!;
 
             var order = new DepositOrder
             {
                 StoreGuid = settings.StoreGuid,
                 TradeNo = settings.TradeNo,
                 TransName = settings.TransName,
-                Type = settings.Type, 
+                Type = settings.Type,
                 Money = decimal.Parse(request.Amount),
                 NotifyUrl = $"{_options.CallbackBaseUrl}/deposit/callback"
             };
@@ -43,7 +43,6 @@ namespace Tgs.Payment.ApplePay.MessageQueue
 
             if (depositResponse != null && depositResponse.Result == 1)
             {
-                //要存settings和回來的Response到dbo.deposit_forms資料表 apply_info
                 var applyInfo = new ApplePayDepositApplyInfo(settings, depositResponse);
 
                 var msg = new DepositResponse
@@ -71,5 +70,7 @@ namespace Tgs.Payment.ApplePay.MessageQueue
                 return msg.ToByteArray();
             }
         }
+
+        public ValueTask<byte[]> HandleExceptionAsync(byte[] data, Exception exception, CancellationToken cancellationToken = default) => throw new NotImplementedException();
     }
 }
