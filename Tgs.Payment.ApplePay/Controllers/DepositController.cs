@@ -37,29 +37,6 @@ namespace Tgs.Payment.ApplePay.Controllers
 
             Console.WriteLine("======================================================================");
 
-            //Console.WriteLine($"receive_id:{request.receive_id}");
-            //Console.WriteLine($"receive_state:{request.receive_state}");
-            //Console.WriteLine($"receive_type:{request.receive_type}");
-            //Console.WriteLine($"receive_tradeno:{request.receive_tradeno}");
-            //Console.WriteLine($"receive_money:{request.receive_money}");
-            //Console.WriteLine($"receive_inmoney:{request.receive_inmoney}");
-            //Console.WriteLine($"receive_inname:{request.receive_inname}");
-            //Console.WriteLine($"receive_inbankname:{request.receive_inbankname}");
-            //Console.WriteLine($"receive_inbanknum:{request.receive_inbanknum}");
-            //Console.WriteLine($"receive_location:{request.receive_location}");
-            //Console.WriteLine($"receive_inbankfullname:{request.receive_inbankfullname}");
-            //Console.WriteLine($"receive_qrcode_url:{request.receive_qrcode_url}");
-            //Console.WriteLine($"receive_trans_bankname:{request.receive_trans_bankname}");
-            //Console.WriteLine($"receive_trans_name:{request.receive_trans_name}");
-            //Console.WriteLine($"receive_trans_banknum:{request.receive_trans_banknum}");
-            //Console.WriteLine($"receive_trans_branchname:{request.receive_trans_branchname}");
-            //Console.WriteLine($"receive_regdate:{request.receive_regdate}");
-            //Console.WriteLine($"receive_update:{request.receive_update}");
-            //Console.WriteLine($"check:{request.check}");
-            //Console.WriteLine($"result:{request.result}");
-            //Console.WriteLine($"check2:{request.check2}");
-            //Console.WriteLine("==================================================================");
-
             var depositForm = await getDepositFormService
                 .GetAsync(new GetDepositFormQuery(request.receive_tradeno))
                 .ConfigureAwait(false);

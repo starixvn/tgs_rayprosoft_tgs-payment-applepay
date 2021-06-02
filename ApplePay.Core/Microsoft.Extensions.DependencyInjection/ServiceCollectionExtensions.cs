@@ -23,7 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .Services
                 .RegisterAllServiceUtilityTypes(Assembly.GetExecutingAssembly(), ServiceLifetime.Transient)
                 .AddTransient<ApplePayHasher>()
-                //.AddSingleton<ApplePaySerializer>()
+                .AddSingleton<ApplePaySerializer>()
                 .AddNatsMessageQueue(config =>
                 {
                     config

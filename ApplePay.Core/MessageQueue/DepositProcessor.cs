@@ -32,7 +32,7 @@ namespace Tgs.Payment.ApplePay.MessageQueue
                 StoreGuid = settings.StoreGuid,
                 TradeNo = settings.TradeNo,
                 TransName = settings.TransName,
-                Type = "3", 
+                Type = settings.Type, 
                 Money = decimal.Parse(request.Amount),
                 NotifyUrl = $"{_options.CallbackBaseUrl}/deposit/callback"
             };
