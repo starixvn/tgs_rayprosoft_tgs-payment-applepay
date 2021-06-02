@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Tgs.Payment.ApplePay
 {
@@ -13,18 +14,18 @@ namespace Tgs.Payment.ApplePay
     {
         private readonly HttpClient _httpClient;
         private readonly ApplePayHasher _applePayHasher;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
+        private readonly JsonSerializerOptions? _jsonSerializerOptions;
         private readonly ILogger<ApplePayClient> _logger;
 
         public ApplePayClient(
             HttpClient httpClient,
-            ApplePayHasher applePayHasher,
-            JsonSerializerOptions jsonSerializerOptions,
+            IOptions<ApplePayOptions> optionsAccessor,
+            ApplePayHasher applePayHasher,            
             ILogger<ApplePayClient> logger)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _jsonSerializerOptions = optionsAccessor.Value.SystemSerializerOptions;
             _applePayHasher = applePayHasher ?? throw new ArgumentNullException(nameof(applePayHasher));
-            _jsonSerializerOptions = jsonSerializerOptions ?? throw new ArgumentNullException(nameof(jsonSerializerOptions));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
