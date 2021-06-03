@@ -47,21 +47,21 @@ namespace Tgs.Payment.ApplePay.Controllers
             var callbackMessage = new ApplePayWithdrawReturn()
             {
                 Result = request.result,
-                PayRate = request.pay_rate.Value,
-                PayBase = request.pay_base.Value,
-                PayFee = request.pay_fee.Value,
+                PayRate = request.pay_rate,
+                PayBase = request.pay_base,
+                PayFee = request.pay_fee,
                 PayId = request.pay_id,
                 PayInBankFullName = request.pay_inbankfullname,
                 PayInBankName = request.pay_inbankname,
                 PayInBankNum = request.pay_inbanknum,
                 PayInName = request.pay_inname,
                 PayLocation = request.pay_location,
-                PayMoney = request.pay_money.Value,
-                PayRegDate = request.pay_regdate.Value,
+                PayMoney = request.pay_money,
+                PayRegDate = request.pay_regdate,
                 PayState = request.pay_state,
                 PayTradeNo = request.pay_tradeno,
                 PayType = request.pay_type,
-                PayUpdate = request.pay_update.Value,
+                PayUpdate = request.pay_update,
                 Check = request.check,
                 Check2 = request.check2
             };
