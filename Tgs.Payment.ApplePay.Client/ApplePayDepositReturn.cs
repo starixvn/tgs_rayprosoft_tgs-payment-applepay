@@ -1,6 +1,6 @@
 ﻿namespace Tgs.Payment.ApplePay
 {
-    public class ApplePayReturn
+    public class ApplePayDepositReturn
     {
         public string ReceiveId { get; init; } = default!;
         public string ReceiveState { get; init; } = default!;

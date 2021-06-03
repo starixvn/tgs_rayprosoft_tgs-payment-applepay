@@ -41,7 +41,7 @@ namespace Tgs.Payment.ApplePay.Controllers
                 .GetAsync(new GetDepositFormQuery(request.receive_tradeno))
                 .ConfigureAwait(false);
 
-            var callbackMessage = new ApplePayReturn()
+            var callbackMessage = new ApplePayDepositReturn()
             {
                 ReceiveId = request.receive_id,
                 ReceiveMoney = request.receive_money,

@@ -14,9 +14,9 @@ namespace ConsoleAppTest
             //Console.WriteLine(checkEncrypt());
 
             //Console.WriteLine(Pay_AddCheck());
-            //var r = Pay_AddCheck();
+            var r = Pay_AddCheck();
 
-            var r = Receive_AddCheck();
+            //var r = Receive_AddCheck();
             Console.WriteLine(r);
 
             Console.ReadLine();
@@ -43,7 +43,8 @@ namespace ConsoleAppTest
         private static string Pay_AddCheck()
         {
             var store_guid = "2FF00CD295A47E70B1CFFFACAC6D02CA";
-            var tradeno = "b74ea77e-b38c-4e2a-843d-a2a47d9126a8";//跟我方系統對接用的訂單 自己產guid
+            //跟我方系統對接用的訂單 自己產guid
+            var tradeno = Guid.NewGuid();
             var api_key = "EXgNMxsIxfAFuupt9QQa";//ApplePay CS給的
             var money = 100;
             var plainText = $"{store_guid}_{tradeno}_{api_key}_{money}";

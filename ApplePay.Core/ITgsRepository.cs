@@ -7,6 +7,10 @@ namespace Tgs.Payment.ApplePay
     {
         ValueTask<DepositFormInfo> GetDepositFormByIdAsync(Guid id);
 
-        ValueTask SaveDepositReturnAsync(Guid id, ApplePayReturn depositReturn);
+        ValueTask<WithdrawFormInfo> GetWithdrawFormByIdAsync(Guid id);
+
+        ValueTask SaveDepositReturnAsync(Guid id, ApplePayDepositReturn depositReturn);
+
+        ValueTask SaveWithdrawReturnAsync(Guid id, ApplePayWithdrawReturn withdrawReturn);
     }
 }

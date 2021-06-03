@@ -30,7 +30,24 @@ namespace Tgs.Payment.ApplePay.Repositories
                data.PaymentReturn);
         }
 
-        public async ValueTask SaveDepositReturnAsync(Guid id, ApplePayReturn depositReturn)
+        public async ValueTask<WithdrawFormInfo> GetWithdrawFormByIdAsync(Guid id)
+        {
+            var data = await _dbContext.WithdrawForms.FindAsync(id).ConfigureAwait(false);
+
+            return new WithdrawFormInfo(
+                data.Id,
+                data.PlayerCode,
+                data.BrandId,
+                data.BrandPaymentId,
+                data.Amount,
+                data.Status,
+                data.BankInfoId,
+                data.BankInfo,
+                _serializer.Deserialize<ApplePayWithdrawApplyInfo>(data.ApplyInfo!),
+                data.PaymentReturn);
+        }
+
+        public async ValueTask SaveDepositReturnAsync(Guid id, ApplePayDepositReturn depositReturn)
         {
             var form = await _dbContext.DepositForms
                 .FindAsync(id)
@@ -39,6 +56,17 @@ namespace Tgs.Payment.ApplePay.Repositories
             form.Status = 1000;
             form.ActualAmount = decimal.Parse(depositReturn.ReceiveInMoney);
             form.PaymentReturn = _serializer.Serialize(depositReturn);
+
+            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+        }
+
+        public async ValueTask SaveWithdrawReturnAsync(Guid id, ApplePayWithdrawReturn withdrawReturn)
+        {
+            var form = await _dbContext.WithdrawForms
+                .FindAsync(id)
+                .ConfigureAwait(false);
+
+            form.PaymentReturn = _serializer.Serialize(withdrawReturn);
 
             await _dbContext.SaveChangesAsync().ConfigureAwait(false);
         }
