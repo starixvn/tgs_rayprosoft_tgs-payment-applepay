@@ -36,7 +36,7 @@ namespace Tgs.Payment.ApplePay.Repositories
 
             return new WithdrawFormInfo(
                 data.Id,
-                data.PlayerCode,
+                data.UserId!,
                 data.BrandId,
                 data.BrandPaymentId,
                 data.Amount,

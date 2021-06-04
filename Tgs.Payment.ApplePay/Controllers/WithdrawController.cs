@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -29,15 +28,8 @@ namespace Tgs.Payment.ApplePay.Controllers
             [FromServices] IOptions<JsonOptions> jsonOptionsAccessor,
             [FromServices] IGetService<GetWithdrawFormQuery, WithdrawFormInfo> getWithdrawFormService,
             [FromServices] ICommandService<SaveWithdrawReturnCommand> saveReturnService,
-            //[FromServices] ApplePayHasher hasher,
-            [FromForm] CallbackWithdrawViewModel request,
-            [FromForm] IFormCollection form)
+            [FromForm] CallbackWithdrawViewModel request)
         {
-            foreach (var p in form)
-                Console.WriteLine($"{p.Key}: {p.Value}");
-
-            Console.WriteLine("======================================================================");
-
             var jsonSerializerOptions = jsonOptionsAccessor.Value.JsonSerializerOptions;
 
             var withdrawForm = await getWithdrawFormService

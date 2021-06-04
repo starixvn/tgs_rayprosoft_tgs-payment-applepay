@@ -10,8 +10,6 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities
 {
     public partial class TgsContext : DbContext
     {
-        public virtual DbSet<DepositForm> DepositForms { get; set; }
-        public virtual DbSet<WithdrawForm> WithdrawForms { get; set; }
         public TgsContext()
         {
         }
@@ -21,6 +19,8 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities
         {
         }
 
+        public virtual DbSet<DepositForm> DepositForms { get; set; }
+        public virtual DbSet<WithdrawForm> WithdrawForms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

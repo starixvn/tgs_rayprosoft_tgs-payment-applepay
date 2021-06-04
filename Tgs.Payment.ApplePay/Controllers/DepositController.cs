@@ -3,7 +3,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using JoyMoe.Common.Json;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Tgs.Payment.ApplePay.Services;
@@ -29,14 +28,8 @@ namespace Tgs.Payment.ApplePay.Controllers
         public async Task<CallbackConfirmViewModel> DepositCallback(
             [FromServices] IGetService<GetDepositFormQuery, DepositFormInfo> getDepositFormService,
             [FromServices] ICommandService<SaveDepositReturnCommand> saveReturnService,
-            [FromForm] CallbackDepositViewModel request,
-            [FromForm] IFormCollection form)
+            [FromForm] CallbackDepositViewModel request)
         {
-            foreach (var p in form)
-                Console.WriteLine($"{p.Key}: {p.Value}");
-
-            Console.WriteLine("======================================================================");
-
             var depositForm = await getDepositFormService
                 .GetAsync(new GetDepositFormQuery(request.receive_tradeno))
                 .ConfigureAwait(false);

@@ -9,7 +9,7 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities
     public partial class WithdrawForm
     {
         public Guid Id { get; set; }
-        public string PlayerCode { get; set; } = default!;
+        public string? UserId { get; set; }
         public Guid BrandId { get; set; }
         public decimal Amount { get; set; }
         public decimal? ActualAmount { get; set; }
@@ -22,5 +22,7 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities
         public string? PaymentReturn { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
+        public string? UserName { get; set; }
+        public int UserType { get; set; }
     }
 }

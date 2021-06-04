@@ -17,8 +17,6 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities.Configurations
 
             entity.HasIndex(e => e.BrandId, "ix_withdraw_forms_brand_id");
 
-            entity.HasIndex(e => e.PlayerCode, "ix_withdraw_forms_player_code");
-
             entity.HasIndex(e => e.BrandPaymentId, "ix_withdraw_froms_brand_payment_id");
 
             entity.Property(e => e.Id)
@@ -57,11 +55,6 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities.Configurations
                 .HasColumnType("jsonb")
                 .HasColumnName("payment_return");
 
-            entity.Property(e => e.PlayerCode)
-                .IsRequired()
-                .HasMaxLength(16)
-                .HasColumnName("player_code");
-
             entity.Property(e => e.Remark).HasColumnName("remark");
 
             entity.Property(e => e.Status).HasColumnName("status");
@@ -70,6 +63,12 @@ namespace Tgs.Payment.ApplePay.Repositories.Entities.Configurations
                 .HasColumnType("timestamp with time zone")
                 .HasColumnName("updated_on")
                 .HasDefaultValueSql("now()");
+
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.Property(e => e.UserName).HasColumnName("user_name");
+
+            entity.Property(e => e.UserType).HasColumnName("user_type");
 
             OnConfigurePartial(entity);
         }
