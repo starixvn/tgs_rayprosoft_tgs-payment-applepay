@@ -26,6 +26,62 @@ pipeline {
 				sh 'dotnet nuget push "Tgs.Payment.ApplePay.Client/bin/$BuildConfiguration/*.nupkg" --source "raypro" --skip-duplicate'
 			}
 		}
+
+		stage('Build Docker Image') {
+			steps {
+				sh 'dotnet build "Tgs.Payment.ApplePay/Tgs.Payment.ApplePay.csproj" -c $BuildConfiguration -t:ContainerBuild -p:DockerfileTag="$ImageName:v${BUILD_NUMBER}" --no-restore '
+			}
+		}
+
+		stage('Push Docker Image') {
+			steps {
+				sh 'sudo docker push $ImageName:v${BUILD_NUMBER}'
+			}
+		}
+
+		stage('Deploy to dev') {
+			input {
+				message 'Ready to go?'
+				ok 'yes'
+			}
+
+			steps {
+				configFileProvider([
+					configFile(
+						fileId: 'applepay.dev.json', 
+						variable: 'applepaydev')]) {
+					script {
+						def json = readJSON file: "$applepaydev";
+
+						env.TGS = json.tgs;
+						env.PaymentApiUrl = json.paymentApiUrl;
+						env.NatsUri = json.nats;
+						env.CallbackUrl = json.callbackBaseUrl;
+
+						withKubeConfig([credentialsId: 'k8s-kube-config', serverUrl: 'https://192.168.50.105:6443']) {
+							sh '''
+								helm template k8s/applepay \
+									--set image.tag=v${BUILD_NUMBER} \
+									--set namespace=dev \
+									--set "connectionStrings.tgs=${TGS}" \
+									--set paymentApiUrl=${PaymentApiUrl} \
+									--set nats=${NatsUri} \
+									--set callbackBaseUrl=${CallbackUrl}
+							'''
+							sh '''
+								helm template k8s/applepay \
+									--set image.tag=v${BUILD_NUMBER} \
+									--set namespace=dev \
+									--set "connectionStrings.tgs=${TGS}" \
+									--set paymentApiUrl=${PaymentApiUrl} \
+									--set nats=${NatsUri} \
+									--set callbackBaseUrl=${CallbackUrl} | kubectl -n dev apply -f -
+							'''
+						}
+					}
+				}
+			}
+		}
 	}
 
 	post {

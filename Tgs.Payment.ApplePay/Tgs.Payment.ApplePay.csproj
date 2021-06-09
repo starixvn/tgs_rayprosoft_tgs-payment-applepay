@@ -1,12 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>fcdb99d1-b730-4685-91c3-aede8d4fe80f</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<GlobalNugetConfig>$(UserProfile)\AppData\Roaming\NuGet\NuGet.Config</GlobalNugetConfig>
+		<GlobalNugetConfig Condition="'$(UserProfile)'==''">$(HOME)/.nuget/NuGet/NuGet.Config</GlobalNugetConfig>
+		<DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)" --secret id=nuget,src="$(GlobalNugetConfig)"</DockerfileBuildArguments>
+		<DockerfileTag Condition="$(DockerfileTag) == ''">payment/applepay</DockerfileTag>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ApplePay.Core\ApplePay.Core.csproj" />
-    <ProjectReference Include="..\ApplePay.Repositories\ApplePay.Repositories.csproj" />
-  </ItemGroup>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ApplePay.Core\ApplePay.Core.csproj" />
+		<ProjectReference Include="..\ApplePay.Repositories\ApplePay.Repositories.csproj" />
+	</ItemGroup>
 
 </Project>
