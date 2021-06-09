@@ -35,46 +35,49 @@ namespace Tgs.Payment.ApplePay.Controllers
                 .GetAsync(new GetDepositFormQuery(request.receive_tradeno))
                 .ConfigureAwait(false);
 
-            var callbackMessage = new ApplePayDepositReturn()
+            if (depositForm.Status < 1000)
             {
-                ReceiveId = request.receive_id,
-                ReceiveMoney = request.receive_money,
-                ReceiveInBankFullName = request.receive_inbankfullname,
-                ReceiveInBankname = request.receive_inbankname,
-                ReceiveInBankNum = request.receive_inbanknum,
-                ReceiveLocation = request.receive_location,
-                ReceiveInMoney = request.receive_inmoney,
-                ReceiveInName = request.receive_inname,
-                ReceiveQrcodeUrl = request.receive_qrcode_url,
-                ReceiveRegdate = request.receive_regdate,
-                ReceiveState = request.receive_state,
-                ReceiveTradeNo = request.receive_tradeno,
-                ReceiveTransBankName = request.receive_trans_bankname,
-                ReceiveTransBankNum = request.receive_trans_banknum,
-                ReceiveTransBranchName = request.receive_trans_branchname,
-                ReceiveTransName = request.receive_trans_name,
-                ReceiveType = request.receive_type,
-                ReceiveUpdate = request.receive_update,
-                Result = request.result,
-                Check = request.check,
-                Check2 = request.check2
-            };
+                var callbackMessage = new ApplePayDepositReturn()
+                {
+                    ReceiveId = request.receive_id,
+                    ReceiveMoney = request.receive_money,
+                    ReceiveInBankFullName = request.receive_inbankfullname,
+                    ReceiveInBankname = request.receive_inbankname,
+                    ReceiveInBankNum = request.receive_inbanknum,
+                    ReceiveLocation = request.receive_location,
+                    ReceiveInMoney = request.receive_inmoney,
+                    ReceiveInName = request.receive_inname,
+                    ReceiveQrcodeUrl = request.receive_qrcode_url,
+                    ReceiveRegdate = request.receive_regdate,
+                    ReceiveState = request.receive_state,
+                    ReceiveTradeNo = request.receive_tradeno,
+                    ReceiveTransBankName = request.receive_trans_bankname,
+                    ReceiveTransBankNum = request.receive_trans_banknum,
+                    ReceiveTransBranchName = request.receive_trans_branchname,
+                    ReceiveTransName = request.receive_trans_name,
+                    ReceiveType = request.receive_type,
+                    ReceiveUpdate = request.receive_update,
+                    Result = request.result,
+                    Check = request.check,
+                    Check2 = request.check2
+                };
 
-            await saveReturnService
-                .ExecuteAsync(new SaveDepositReturnCommand(depositForm.Id, callbackMessage))
-                .ConfigureAwait(false);
+                await saveReturnService
+                    .ExecuteAsync(new SaveDepositReturnCommand(depositForm.Id, callbackMessage))
+                    .ConfigureAwait(false);
 
-            var jsonSerializerOptions = new JsonSerializerOptions
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-                PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance
-            };
+                var jsonSerializerOptions = new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                    PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance
+                };
 
-            _logger.LogInformation(JsonSerializer.Serialize(callbackMessage, jsonSerializerOptions));
+                _logger.LogInformation(JsonSerializer.Serialize(callbackMessage, jsonSerializerOptions));
 
-            await approveService
-                .ExecuteAsync(new ApproveDepositFormCommand(depositForm.Id, depositForm.BrandId))
-                .ConfigureAwait(false);
+                await approveService
+                    .ExecuteAsync(new ApproveDepositFormCommand(depositForm.Id, depositForm.BrandId))
+                    .ConfigureAwait(false);
+            }
 
             return new CallbackConfirmViewModel
             {
