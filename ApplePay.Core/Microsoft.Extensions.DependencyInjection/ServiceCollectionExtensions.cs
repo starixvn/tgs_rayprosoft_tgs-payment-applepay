@@ -35,6 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         })
                         .AddProcessor<DepositProcessor>("tgs.payment.applepay.deposit", "tgs.payment.applepay.deposit")
                         .AddProcessor<WithdrawProcessor>("tgs.payment.applepay.withdraw", "tgs.payment.applepay.withdraw");
-                });
+                })
+                .AddPaymentClient();
     }
 }
