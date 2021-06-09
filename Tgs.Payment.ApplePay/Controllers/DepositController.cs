@@ -28,6 +28,7 @@ namespace Tgs.Payment.ApplePay.Controllers
         public async Task<CallbackConfirmViewModel> DepositCallback(
             [FromServices] IGetService<GetDepositFormQuery, DepositFormInfo> getDepositFormService,
             [FromServices] ICommandService<SaveDepositReturnCommand> saveReturnService,
+            [FromServices] ICommandService<ApproveDepositFormCommand> approveService,
             [FromForm] CallbackDepositViewModel request)
         {
             var depositForm = await getDepositFormService
@@ -70,6 +71,10 @@ namespace Tgs.Payment.ApplePay.Controllers
             };
 
             _logger.LogInformation(JsonSerializer.Serialize(callbackMessage, jsonSerializerOptions));
+
+            await approveService
+                .ExecuteAsync(new ApproveDepositFormCommand(depositForm.Id, depositForm.BrandId))
+                .ConfigureAwait(false);
 
             return new CallbackConfirmViewModel
             {

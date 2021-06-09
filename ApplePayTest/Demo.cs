@@ -3,16 +3,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Tgs.Payment;
 using Tgs.Payment.ApplePay;
+using Tgs.Payment.Clients;
 
 namespace ApplePayTest
 {
     internal class Demo : BackgroundService
     {
-        private readonly IPaymentClient _paymentClient;
         private readonly ApplePaySerializer _applePaySerializer;
         private readonly ILogger<Demo> _logger;
+        private readonly IPaymentClient _paymentClient;
 
         public Demo(IPaymentClient paymentClient, ApplePaySerializer applePaySerializer, ILogger<Demo> logger)
         {
