@@ -5,13 +5,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Tgs.Payment.ApplePay</RootNamespace>
     <Authors>Raypro</Authors>
-    <Version>0.0.4-alpha</Version>
+    <Version>0.0.5</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="JoyMoe.Common.Json" Version="0.5.156242" />
-    <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
   </ItemGroup>
 
 </Project>
