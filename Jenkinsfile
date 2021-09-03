@@ -108,7 +108,7 @@ pipeline {
 
 					'''
 					sh '''
-						helm template k8s/applepay \
+						helm template deployment/k8s/applepay \
 							--set image.tag=${TAG} \
 							--set namespace=${kube_ns} \
 							--set connectionStrings.tgs="$tgs_tgs" \
