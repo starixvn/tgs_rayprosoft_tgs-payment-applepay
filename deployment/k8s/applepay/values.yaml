@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.gitlab.com/rayprosoft/turnkey-gaming-system/applepay
+  repository: registry.gitlab.com/rayprosoft/turnkey-gaming-system/payment-applepay
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
